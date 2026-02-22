@@ -21,5 +21,10 @@ python3 manage.py runserver
 ### Нововведения с Urls & Views Commit
 - Добавлена функция работы с маршрутами (/admin, /ice_cream, /ice_cream/<integer>)
 
+### Нововведения с Templates Commit
+- Добавлен HTML и СSS с помощью django.shortcuts
+- Изменена структура проекта по методологии DRY & KISS
+- Верстка разделена по template-ам с помощью тегов includes, block
+
 ### Авторы
 Илья Никифоров
