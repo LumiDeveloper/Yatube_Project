@@ -1,7 +1,9 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 def index(request):
-    return HttpResponse('Главная страница')
+    template = 'yatube/index.html'
+    return render(request, template)
 
 def ice_cream_list(request):
     return HttpResponse('Список мороженого')
