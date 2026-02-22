@@ -17,5 +17,9 @@ pip install -r requirements.txt
 ```
 python3 manage.py runserver
 ```
+
+### Нововведения с Urls & Views Commit
+- Добавлена функция работы с маршрутами (/admin, /ice_cream, /ice_cream/<integer>)
+
 ### Авторы
 Илья Никифоров
