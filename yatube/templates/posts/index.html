@@ -11,7 +11,28 @@
       {% include 'includes/header.html' %}
     </header>
     <main> 
-      {% include 'includes/main.html' %}
+      {# {% include 'includes/main.html' %} #}
+      {% block content %}
+        <div class="container py-5">     
+          <h1>Последние обновления на сайте</h1>
+          {% for post in posts %}
+            <article>
+                <ul>
+                  <li>
+                    Автор: {{ post.author.get_full_name }}
+                  </li>
+                  <li>
+                    Дата публикации: {{ post.pub_date|date:"d E Y" }}
+                  </li>
+                </ul>
+                <p>{{ post.text }}</p>
+                <a href="{% url 'group_list'%}">все записи группы</a>
+            </article>
+            {% if not forloop.last %}<hr>{% endif %}
+          {% endfor %}
+          <hr>
+        </div>  
+      {% endblock %}
     </main>
         
     <footer>
