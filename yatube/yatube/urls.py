@@ -5,6 +5,7 @@ from Posts import views as posts_views
 
 
 urlpatterns = [
+    path('', include('Posts.urls', namespace='posts')),
     path('', posts_views.index, name='index'),
     path('index/', posts_views.index, name='index'),
     path('group_list/', views.group_list, name='group_list'),
