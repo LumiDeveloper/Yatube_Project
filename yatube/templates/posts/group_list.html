@@ -1,36 +1,17 @@
 {% extends "base.html" %}
-{% load static %}
 
-<!DOCTYPE html> <!-- Используется html 5 версии -->
-<html lang="ru"> <!-- Язык сайта - русский -->
-  <head>    
+{% block content %}
+  <div class="container py-5">
+    <h1>{{ group.title }}</h1>
+    <p>{{ group.description }}</p>
     
-  </head>
-  <body>
-    <header>
-      {% include 'includes/header.html' %}
-    </header>
-    <main>
-      {% block content %}
-        <div class="container py-5">
-          <h1>{{ group.title }}</h1>
-          <p>{{ group.description }}</p>
-          {% for post in posts %}
-            <article>
-              <ul>
-                <li>Автор: {{ post.author.get_full_name }}</li>
-                <li>Дата: {{ post.pub_date|date:"d E Y" }}</li>
-              </ul>
-              <p>{{ post.text }}</p>
-            </article>
-            {% if not forloop.last %}<hr>{% endif %}
-          {% endfor %}
-          <hr>
-        </div>  
-      {% endblock %}
-    </main>
-    <footer>
-      {% include 'includes/footer.html' %}
-    </footer>
-  </body>
-</html>
+    {% for post in posts %}
+      {# Передаем post как item, а также флаг, что мы на странице группы #}
+      {% include 'includes/main/article.html' with item=post is_group_page=True %}
+      
+      {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+    
+    <hr>
+  </div>  
+{% endblock %}

@@ -1,45 +1,14 @@
 {% extends "base.html" %}
-{% load static %}
 
-<!DOCTYPE html> <!-- Используется html 5 версии -->
-<html lang="ru"> <!-- Язык сайта - русский -->
-  <head>    
-    
-  </head>
-  <body>
-    <header>
-      {% include 'includes/header.html' %}
-    </header>
-    <main> 
-      {# {% include 'includes/main.html' %} #}
-      {% block content %}
-        <div class="container py-5">     
-          <h1>Последние обновления на сайте</h1>
-          {% for post in posts %}
-            <article>
-                <ul>
-                  <li>
-                    Автор: {{ post.author.get_full_name }}
-                  </li>
-                  <li>
-                    Дата публикации: {{ post.pub_date|date:"d E Y" }}
-                  </li>
-                </ul>
-                <p>{{ post.text }}</p>
-                {% if post.group %}
-                  <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
-                {% endif %}
-            </article>
-            {% if not forloop.last %}<hr>{% endif %}
-          {% endfor %}
-          <hr>
-        </div>  
-      {% endblock %}
-    </main>
-        
-    <footer>
-      {% include 'includes/footer.html' %}
-    </footer>
-
-  </body>
-</html>
+{% block content %}
+  <div class="container py-5">     
+    <h1>Последние обновления на сайте</h1>
+    {% for post in posts %}
+      
+      {# Передаем post из цикла в переменную item для шаблона article.html #}
+      {% include 'includes/main/article.html' with item=post %}
+      
+      {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+  </div>  
+{% endblock %}
