@@ -1,0 +1,11 @@
+<article>
+  <ul>
+    <li>Автор: {{ item.author.get_full_name }}</li>
+    <li>Дата публикации: {{ item.pub_date|date:"d E Y" }}</li>
+  </ul>
+  <p>{{ item.text }}</p>
+  {# Ссылку на группу выводим, только если она передана и мы НЕ на странице самой группы #}
+  {% if item.group and not is_group_page %}
+    <a href="{% url 'posts:group_list' item.group.slug %}">все записи группы</a>
+  {% endif %}
+</article>
